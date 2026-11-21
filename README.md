@@ -17,7 +17,15 @@ In Claude Code:
 /plugin install eyemark@eyemark
 ```
 
-When you enable it, Claude Code asks for your Eyemark token; it's kept in your system's credential store. Needs Node 22 or later.
+Then enter your Eyemark token, if Claude Code didn't ask for it during the install:
+
+```
+/plugin configure eyemark@eyemark
+```
+
+It's kept in your system's credential store. Restart Claude Code once it's set. Needs Node 22 or later.
+
+Plugins from this marketplace don't update on their own unless you turn that on: `/plugin`, then Marketplaces, eyemark, and enable auto-update. The checks themselves always come from Eyemark up to date, with nothing to install.
 
 Keep your dev server running while you build: the code checks work without it, the rendered checks need it.
 
