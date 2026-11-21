@@ -1,0 +1,16 @@
+{
+  "name": "eyemark",
+  "description": "A senior designer in your coding agent: Eyemark's code checks after every edit to a UI file, measure on your dev server before the work is done, and the shape, critique, fix and research skills.",
+  "author": { "name": "Eyemark", "url": "https://eyemark.dev" },
+  "homepage": "https://eyemark.dev/docs/mcp",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": ["design", "ux", "accessibility", "ui", "review"],
+  "userConfig": {
+    "token": {
+      "type": "string",
+      "title": "Eyemark token",
+      "description": "Your Eyemark MCP token (em_ and 64 characters), from the person who invited you.",
+      "sensitive": true
+    }
+  }
+}

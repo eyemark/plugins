@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "eyemark": {
+      "command": "npx",
+      "args": ["-y", "@eyemark/mcp@latest"],
+      "env": { "EYEMARK_TOKEN": "${user_config.token}" }
+    }
+  }
+}

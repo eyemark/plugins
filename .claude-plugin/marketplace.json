@@ -1,0 +1,15 @@
+{
+  "name": "eyemark",
+  "description": "Eyemark's plugins for coding agents: a senior designer that checks every UI edit.",
+  "owner": {
+    "name": "Eyemark",
+    "url": "https://eyemark.dev"
+  },
+  "plugins": [
+    {
+      "name": "eyemark",
+      "source": "./plugins/eyemark",
+      "description": "A senior designer in your coding agent: Eyemark's code checks after every edit to a UI file, measure on your dev server before the work is done, and the shape, critique, fix and research skills."
+    }
+  ]
+}

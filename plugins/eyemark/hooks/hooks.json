@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/eyemark-hook.mjs\" edit", "timeout": 30 }]
+      },
+      {
+        "matcher": "mcp__.*eyemark.*__measure",
+        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/eyemark-hook.mjs\" measured", "timeout": 10 }]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/eyemark-hook.mjs\" stop", "timeout": 10 }]
+      }
+    ]
+  }
+}
