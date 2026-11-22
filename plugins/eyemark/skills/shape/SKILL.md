@@ -144,5 +144,6 @@ The rules are the same everywhere. Only the length changes.
 
 ## Next
 
-Build against the brief. After each part, run `measure` on the dev server with the routes it
-touches and fix what it finds. When the feature is built, run `critique` on the running UI.
+Build against the brief. After each edit to a UI file, fix what `check_code` finds in it (Eyemark's
+plugin runs it for you on Edit and Write; otherwise call it, where the server has it). After each
+part, run `measure` on the dev server with the routes it touches and fix what it finds. When the feature is built, run `critique` on the running UI.

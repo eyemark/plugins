@@ -10,9 +10,14 @@
         "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/eyemark-hook.mjs\" measured", "timeout": 10 }]
       }
     ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/eyemark-hook.mjs\" prompt", "timeout": 20 }]
+      }
+    ],
     "Stop": [
       {
-        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/eyemark-hook.mjs\" stop", "timeout": 10 }]
+        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/eyemark-hook.mjs\" stop", "timeout": 60 }]
       }
     ]
   }

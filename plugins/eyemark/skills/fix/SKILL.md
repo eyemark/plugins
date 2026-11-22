@@ -1,6 +1,6 @@
 ---
 name: fix
-description: Fix the Eyemark findings an agent may fix on its own, and hand everything else to a person with options. Use before opening a pull request that changes UI (the agent that built the change runs it on its own branch), on a pull request after the Eyemark check ran, when someone says "fix the design findings", or when given eyemark measure / eyemark copy JSON. Applies only fixes marked `fix: auto` in the catalog, verifies each by measuring again, and writes one decision list for the rest.
+description: Fix the Eyemark findings an agent may fix on its own, and hand everything else to a person with options. Use before opening a pull request that changes UI (the agent that built the change runs it on its own branch), on a pull request after the Eyemark check ran, when someone says "fix the design findings", or when given findings from check_code, measure, or eyemark's JSON. Applies only fixes marked `fix: auto` in the catalog, verifies each by measuring again, and writes one decision list for the rest.
 ---
 
 # Fix
@@ -23,18 +23,23 @@ prepares the second.
 
 ## Inputs
 
-- The findings. Before a pull request, produce them yourself on the local dev server:
-  `eyemark measure --url http://localhost:<port> --routes <the routes you changed> --no-perf --json`
-  and `eyemark copy --json`. On a pull request, the workflow downloads `eyemark-findings.json` and
-  `eyemark-copy.json` as an artifact.
-- The catalog, `checks/automated.yaml` in the Eyemark package: each check's `rule`,
-  `why`, and `fix` (`auto` or `review`).
+- The findings. Before a pull request, produce them yourself, with what you have:
+  - **Eyemark's MCP tools** (the plugin, `@eyemark/mcp`): `check_code` on the files you changed, and
+    `measure` on the local dev server with the routes you changed.
+  - **The `eyemark` CLI** (a repository that installs the package, CI):
+    `eyemark measure --url http://localhost:<port> --routes <the routes you changed> --no-perf --json`
+    and `eyemark copy --json`.
+  On a pull request, the workflow downloads `eyemark-findings.json` and `eyemark-copy.json` as an
+  artifact.
+- The catalog, for each check's `fix` (`auto` or `review`): `list_automated_checks` on the MCP
+  server, or `checks/automated.yaml` in the Eyemark package, which also has its `rule` and `why`.
+  Without the package, the finding's message says what's wrong and why.
 - The repo, checked out on the pull request's branch.
 
 ## Steps
 
-1. **Split.** If you measured yourself, use `eyemark measure --save`, so the next run can say what
-   changed. Group findings by check id. A check is yours only if the catalog says
+1. **Split.** If you measured yourself, keep that run to compare against (with the CLI,
+   `eyemark measure --save`). Group findings by check id. A check is yours only if the catalog says
    `fix: auto` (and `copy/no-three-dots`). Everything else goes to step 5, untouched.
 
 2. **Find the source.** For each finding, use its route, the `where` text (element,
@@ -49,10 +54,11 @@ prepares the second.
    transition is part of a designed sequence), stop and move that finding to step 5 with
    what you learned.
 
-4. **Verify.** Run the repo's tests, then `eyemark measure --only-failed --save`: it re-measures
-   only the routes that had findings and lists what's fixed, what's new, and the score. A fix
-   counts only if its finding is gone and nothing new appeared. Revert any fix that fails
-   either. (Start with `eyemark measure --save` in step 1, so there's a run to compare against.)
+4. **Verify.** Run the repo's tests, then check again: `check_code` on the files you touched and
+   `measure` on the routes that had findings, compared with step 1's. (With the CLI,
+   `eyemark measure --only-failed --save` re-measures only those routes and lists what's fixed,
+   what's new, and the score.) A fix counts only if its finding is gone and nothing new appeared.
+   Revert any fix that fails either.
 
 5. **Hand the rest to a person.** Write one decision list, ordered by severity: for each
    check, what's wrong in a sentence, where (count and routes), why it matters (from the
@@ -71,7 +77,7 @@ prepares the second.
 ```markdown
 ### Eyemark · fixed 4, 3 need a decision
 
-**Fixed** (one commit each, verified with eyemark measure)
+**Fixed** (one commit each, verified by checking again)
 - `type/font-smoothing`: `antialiased` on body (src/index.css).
 - ...
 
