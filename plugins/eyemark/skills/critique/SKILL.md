@@ -24,6 +24,12 @@ screen.
 You need a browser you can drive (Playwright, or a browser tool). Without one, say so
 and do a code-only review, clearly labeled as weaker.
 
+**Who runs it.** Not the agent that built it, when there's a choice. If you built the feature
+and can start a subagent, give this critique to a fresh one, with only the brief, the diff and
+the running UI: not your reasoning or your notes. A reviewer who saw how it was made reads the
+intent into the screen. Fix what it finds, run it again on what changed, and post its findings
+by check id in the pull request.
+
 ## Steps
 
 1. **Map the feature.** List the views, the objects on each, and the main job. If there
@@ -66,6 +72,9 @@ and do a code-only review, clearly labeled as weaker.
      - Patterns: for any part that uses a Eyemark pattern (a settings rail,
        filters in the URL, row actions), run that pattern's checks, cited as
        `pattern-id/check-id`.
+     - The references the brief picked (its Precedents, and any screen it said to follow):
+       does the result do what they do where the brief said to? Name the reference in the
+       finding. A departure the brief didn't decide is a finding; one the brief decided isn't.
      - The two most similar existing screens: does this solve the same problem the same way,
        or a better way that it says? An unexplained departure is a finding; a better one
        isn't. Where the existing screens are the weaker ones, that's a finding on them.
