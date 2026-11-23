@@ -38,3 +38,5 @@ What the hooks don't see: shell edits outside a git repository, to files git ign
 Keep your dev server running while you build: the code checks work without it, the rendered checks need it.
 
 If you added Eyemark before with `claude mcp add eyemark …`, remove that entry (`claude mcp remove eyemark`): the plugin runs the same server.
+
+The `code` command (`npx @eyemark/mcp code`, for a baseline or `--only`) needs no token of its own while a Claude Code session with the plugin is open: it borrows the engine from the plugin's server, and the token stays there.
