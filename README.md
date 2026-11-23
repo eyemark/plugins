@@ -25,6 +25,12 @@ Then enter your Eyemark token, if Claude Code didn't ask for it during the insta
 
 It's kept in your system's credential store. Restart Claude Code once it's set. Needs Node 22 or later.
 
+Nothing in the plugin list says the token is missing. Without it, the local server (`measure`) and the skills still load; the principles, `plan_feature` and reviews appear once it's set.
+
+In the Claude desktop app: Settings, then Plugins. Scroll past the connectors to Other plugins, open Eyemark, open its Settings tab, paste the token in Eyemark token, and save. It's kept on that computer and used by new sessions there, not SSH, WSL or cloud ones, so start a new session after.
+
+From a shell, without the token showing: `read -rs T && printf '{"token":"%s"}' "$T" | claude plugin configure eyemark@eyemark --values-stdin; unset T`
+
 Plugins from this marketplace don't update on their own unless you turn that on: `/plugin`, then Marketplaces, eyemark, and enable auto-update. The checks themselves always come from Eyemark up to date, with nothing to install.
 
 What the hooks don't see: shell edits outside a git repository, to files git ignores, or in a worktree the agent moved to in the middle of a turn. The code checks don't read Vue, Svelte or Astro files; `measure` covers those.
