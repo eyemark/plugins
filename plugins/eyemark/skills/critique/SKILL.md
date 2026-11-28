@@ -134,6 +134,10 @@ Reviewed: <routes> · States forced: <list> · Browser: <yes/no>
   does isn't a decision: where it disagrees with a principle, the principle wins.
 - On a PR, post the report as a single review comment. Inline comments only for
   findings tied to a specific line.
+- When the person points out something this critique let through (too much shown at once, a
+  state nobody asked about, information missing where a decision is made), that's a miss Eyemark
+  learns from: offer to send it with the `missed` skill, which sends it in their words, with the
+  screen, the element and the check it belongs to if one fits, after showing them what it'll send.
 
 ## Before calling it done
 

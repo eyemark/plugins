@@ -5,6 +5,7 @@ A senior designer in your coding agent.
 - **After an edit to a UI file**, Eyemark's code checks run on that file and their errors go straight back to the agent: focus styles, field sizes, labels, transitions, icon buttons, copy.
 - **Before the agent says it's done**, it's asked once to measure the pages it changed on your dev server, in a real browser at desktop and phone width. In a git repository, UI files it changed with shell commands are found and checked then too.
 - **The skills:** `shape` before building, `critique` after, `fix`, and `research`.
+- **When Eyemark misses something** you can see on a screen, `/eyemark:missed` and what you saw, in your words. It adds where on the screen, shows you what it will send, and sends it to the Eyemark team.
 
 Your code and your dev server stay on your machine.
 

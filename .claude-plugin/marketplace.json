@@ -9,7 +9,7 @@
     {
       "name": "eyemark",
       "source": "./plugins/eyemark",
-      "description": "A senior designer in your coding agent: Eyemark's code checks after every edit to a UI file, measure on your dev server before the work is done, and the shape, critique, fix and research skills."
+      "description": "A senior designer in your coding agent: Eyemark's code checks after every edit to a UI file, measure on your dev server before the work is done, the shape, critique, fix and research skills, and /eyemark:missed to tell Eyemark what it let through."
     }
   ]
 }
